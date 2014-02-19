@@ -11,16 +11,17 @@ Let's say we need typeahead control from angular-ui bootstrap. What is required 
 1. Go to http://angular-ui.github.io/bootstrap/
 2. Click "Create Build" and choose "Typeahead"
 3. Download the build, unpack the archive and put it into your project folder
-4. Edit your `*.html` file to include `ui-bootstrap-custom-tpls-*.js` file
+4. Edit `*.html` file to include `ui-bootstrap-custom-tpls-*.js` file;
+5. Edit `*.js` file to include 'ui.bootstrap' as a dependency of your main module.
 
-Four manual steps seem too much.  Things get even worse when you want to update typeahead directive, or decide you need typeahead plus something else. Maybe I'm missing something and there is an easier way to get this done - please let me know. 
+Things get even worse when you want to update typeahead directive, or decide you need typeahead plus something else. Maybe I'm missing something and there is an easier way to get this done? Please let me know. 
 
 Wouldn't it be nicer if we could do:
 
 1. `npm install typeahead`
 2. Use it.
 
-This is the purpose of `an`. And here is a prove of concept: [address typeahead demo](http://anvaka.github.io/typeahead.demo/).
+This is the purpose of `an`. And here is a prove of concept: [address typeahead demo](http://anvaka.github.io/typeahead.demo/), where typeahead is actually an [npm package](https://github.com/anvaka/typeahead.an).
 
 # How?
 
