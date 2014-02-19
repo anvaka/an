@@ -1,6 +1,6 @@
 # Angular + npm
 
-I think both angular and npm are two most amazing things created in javascript world. Since angular has decided to implement their own module system it reduced potential code reuse opportunities. Many angular factories/services are not specific to angular. 
+I think both angular and npm are two most amazing things created in javascript world. Since angular has decided to implement their own module system it reduced potential code reuse opportunities. Many angular factories/services are not specific to angular and can live on npm.
 
 This is an attempt to show how to share angular modules on npm, and use npm modules for angular directives. It may look rough at edges, but I hope we can level it with your help.
 
