@@ -10,7 +10,6 @@ module.exports = {
   filter: filter.register,
 
   flush: function () {
-    debugger;
     // todo: accept module;
     if (!ngModule) {
       ngModule = createModule();
