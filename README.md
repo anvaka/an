@@ -13,7 +13,7 @@ Let's say we need typeahead control from angular-ui bootstrap. What is required 
 3. Download the build, unpack the archive and put it into your project folder
 4. Edit your `*.html` file to include `ui-bootstrap-custom-tpls-*.js` file
 
-Four manual steps seem too much.  Things get even worse when you want to update typeahead directive, or decide you need typeahead and something else. Maybe I'm missing something and there is an easier way to get this done - please let me know. 
+Four manual steps seem too much.  Things get even worse when you want to update typeahead directive, or decide you need typeahead plus something else. Maybe I'm missing something and there is an easier way to get this done - please let me know. 
 
 Wouldn't it be nicer if we could do:
 
