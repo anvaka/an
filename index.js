@@ -2,26 +2,21 @@ var directive = require('./lib/directive');
 var controller = require('./lib/controller');
 var filter = require('./lib/filter');
 
-var ngModule;
-
 module.exports = {
   directive: directive.register,
   controller: controller.register,
   filter: filter.register,
 
-  flush: function () {
-    // todo: accept module;
-    if (!ngModule) {
-      ngModule = createModule();
+  flush: function (module) {
+    if (!module) {
+      module = createModule();
     }
 
-    controller.flush(ngModule);
-    directive.flush(ngModule);
-    filter.flush(ngModule);
+    controller.flush(module);
+    directive.flush(module);
+    filter.flush(module);
 
-    angular.bootstrap(document, [ngModule.name]);
-
-    return ngModule;
+    return module;
   }
 };
 
