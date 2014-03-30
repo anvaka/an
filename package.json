@@ -1,6 +1,6 @@
 {
   "name": "an",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Angular + NPM: Expose your angular modules on npm",
   "main": "index.js",
   "scripts": {
