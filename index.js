@@ -17,6 +17,12 @@ module.exports = {
     filter.flush(module);
 
     return module;
+  },
+
+  run: function () {
+    var module = this.flush();
+    angular.bootstrap(document.body, [module.name]);
+    return module;
   }
 };
 
