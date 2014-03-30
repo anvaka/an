@@ -4,7 +4,7 @@ I think both angular and npm are two most amazing things created in javascript w
 
 This is an attempt to show how to share angular modules on npm, and use npm modules from angular directives. It may look rough at edges, but I hope we can level it with your help.
 
-# Workflow
+# "Old" workflow
 
 Let's say we need typeahead control from angular-ui bootstrap. What is required to use it now?
 
@@ -15,6 +15,8 @@ Let's say we need typeahead control from angular-ui bootstrap. What is required 
 5. Edit `*.js` file to include 'ui.bootstrap' as a dependency of your main module.
 
 Things get even worse when you want to update typeahead directive, or decide you need typeahead plus something else. Maybe I'm missing something and there is an easier way to get this done? Please let me know. 
+
+# "New" workflow
 
 Wouldn't it be nicer if we could do:
 
