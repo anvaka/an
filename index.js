@@ -1,31 +1,26 @@
-var directive = require('./lib/directive');
-var controller = require('./lib/controller');
-var filter = require('./lib/filter');
+var createAngularPrimitive = require('./lib/createAngularPrimitive');
 
-module.exports = {
-  directive: directive.register,
-  controller: controller.register,
-  filter: filter.register,
+var exposed = ['directive', 'controller', 'filter', 'factory'];
+var services = [];
 
-  flush: function (module) {
-    if (!module) {
-      module = createModule();
-    }
+for (var i = 0; i < exposed.length; ++i) {
+  var name = exposed[i];
+  var primitive = createAngularPrimitive(name);
+  exports[name] = primitive.register;
+  services.push(primitive);
+}
 
-    controller.flush(module);
-    directive.flush(module);
-    filter.flush(module);
-
-    return module;
-  },
-
-  run: function () {
-    var module = this.flush();
-    angular.bootstrap(document.body, [module.name]);
-    return module;
+exports.flush = function (module) {
+  if (!module) {
+    module = angular.module('anModule', []);
   }
+  services.forEach(function (x) { x.flush(module); });
+
+  return module;
 };
 
-function createModule() {
-  return angular.module('anModule', []);
-}
+exports.run = function () {
+  var module = this.flush();
+  angular.bootstrap(document.body, [module.name]);
+  return module;
+};
