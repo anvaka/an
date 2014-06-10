@@ -1,6 +1,6 @@
 var createAngularPrimitive = require('./lib/createAngularPrimitive');
 
-var exposed = ['directive', 'controller', 'filter', 'factory'];
+var exposed = ['directive', 'controller', 'filter', 'factory', 'provider'];
 var services = [];
 
 for (var i = 0; i < exposed.length; ++i) {
