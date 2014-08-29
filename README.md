@@ -6,7 +6,7 @@ This is an attempt to show how to share angular modules on npm, and use npm modu
 
 # "Old" workflow
 
-Let's say we need typeahead control from angular-ui bootstrap. What is required to use it now?
+Let's say we need a typeahead control from angular-ui bootstrap. How do we start using it?
 
 1. Go to http://angular-ui.github.io/bootstrap/
 2. Click "Create Build" and choose "Typeahead"
@@ -14,7 +14,7 @@ Let's say we need typeahead control from angular-ui bootstrap. What is required 
 4. Edit `*.html` file to include `ui-bootstrap-custom-tpls-*.js` file;
 5. Edit `*.js` file to include 'ui.bootstrap' as a dependency of your main module.
 
-Things get even worse when you want to update typeahead directive, or decide you need typeahead plus something else. Maybe I'm missing something and there is an easier way to get this done? Please let me know. 
+Things get worse when you want to update typeahead directive, or decide that you need typeahead plus something else. Maybe I'm missing something and there is an easier way to get this done? Please let me know. 
 
 # "New" workflow
 
@@ -27,7 +27,7 @@ This is the purpose of `an`. And here is a prove of concept: [address typeahead 
 
 # How?
 
-Idea is simple: avoid using `angular.module` in npm package, and delay directives registration up to the point when application is bootstrapped.
+The idea is simple: avoid using `angular.module` in npm package, and delay directives registration up to the point when application is bootstrapped.
 
 E.g. instead of doing:
 
