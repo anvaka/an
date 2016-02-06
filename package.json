@@ -4,12 +4,15 @@
   "description": "Angular + NPM: Publish your AngularJS modules to npm",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "demo": "browserify ./demo/app.js > ./demo/bundle.js"
   },
   "author": "Andrei Kashcha",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/anvaka/an"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0"
   }
 }

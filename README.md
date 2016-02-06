@@ -1,33 +1,60 @@
 # Angular + npm
 
-I think both angular and npm are two most amazing things created in javascript world. Since angular has decided to implement their own module system it reduced potential code reuse opportunities. Many angular factories/services are not specific to angular and can live on npm.
+Build angular 1.x apps with power of npm modules.
 
-This is an attempt to show how to share angular modules on npm, and use npm modules from angular directives. It may look rough at edges, but I hope we can level it with your help.
+# usage
 
-# "Old" workflow
+To start using `an` just replace `angular.{controller|directive|...}('name', fn)`
+with: `module.exports = require('an').{controller|...}('name', fn)`
 
-Let's say we need a typeahead control from angular-ui bootstrap. How do we start using it?
+Then in your main file where you bootstrap angular application:
 
-1. Go to http://angular-ui.github.io/bootstrap/
-2. Click "Create Build" and choose "Typeahead"
-3. Download the build, unpack the archive and put it into your project folder
-4. Edit `*.html` file to include `ui-bootstrap-custom-tpls-*.js` file;
-5. Edit `*.js` file to include 'ui.bootstrap' as a dependency of your main module.
+``` js
+var app = angular.module('yourModule', [/* your regular deps */]);
+// flush all registered modules:
+require('an').flush(app);
+```
 
-Things get worse when you want to update typeahead directive, or decide that you need typeahead plus something else. Maybe I'm missing something and there is an easier way to get this done? Please let me know. 
+## Demo
 
-# "New" workflow
+``` js
+// controller.js
+module.exports = require('an').controller('AppCtrl', function($scope) {
+  $scope.message = 'Hello World';
+});
 
-Wouldn't it be nicer if we could do:
+// app.js
+require('./controller.js'); // just make sure the controller is registered
 
-1. `npm install typeahead`
-2. Use it.
+var app = angular.module('myApp', []);
+// flush controller into app:
+require('an').flush(app);
 
-This is the purpose of `an`. And here is a prove of concept: [address typeahead demo](http://anvaka.github.io/typeahead.demo/), where typeahead is actually an [npm package](https://github.com/anvaka/typeahead.an).
+// this is equivalent to:
+// app.controller('AppCtrl', function() {...});
+```
+
+``` html
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+</head>
+<body ng-controller='AppCtrl'>
+    <h1>{{message}}</h1>
+    <script src='bundle.js'></script>
+</body>
+</html>
+```
+
+See [demo folder](https://github.com/anvaka/an/tree/master/demo) for the same code.
+Browserified output of the demo folder (`browserify ./demo/app.js > ./demo/bundle.js`)
+can be found here: https://anvaka.github.io/an/demo
 
 # How?
 
-The idea is simple: avoid using `angular.module` in npm package, and delay directives registration up to the point when application is bootstrapped.
+The idea is simple: avoid using `angular.module` in npm package, and delay
+directives registration up to the point when application is bootstrapped.
 
 E.g. instead of doing:
 
@@ -51,7 +78,14 @@ When you ready to bootstrap application, collect all directives and register the
 
 # Drawbacks
 
-This approach is still not perfect and requires certain discipline to not forget register your directives via `an`. I can also see potential problems with names collision, versioning (especially when `an` itself is updated). This module is [really simple](https://github.com/anvaka/an/blob/master/index.js) at the moment, and maybe there is a better way of sharing angular directives on npm. Please let me know.
+This approach is still not perfect and requires certain discipline to not forget
+register your directives via `an`. I can also see potential problems with names
+collision, versioning (especially when `an` itself is updated).
+This module is [really simple](https://github.com/anvaka/an/blob/master/index.js)
+at the moment, and maybe there is a better way of sharing angular directives on
+npm.
+
+Please let me know.
 
 # install
 
